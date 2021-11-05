@@ -8,7 +8,9 @@ from django.conf.urls.static import static
 from django.conf import settings
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
-from rest_framework import permissions
+from rest_framework import permissions, routers
+
+from file_manager import FileManager
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -23,14 +25,22 @@ schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny,),
 )
 
+# router = routers.DefaultRouter()
+# router.register("FileManager", FileManager, basename="FileManager/")
+
 urlpatterns = [
+    path("account/", include(("account.urls", "account"))),
+    # File manager package URL.
+    # path("file_manager/", include(("file_manager.urls", "file_manager"))),
+    path("FileManager/", FileManager.as_view()),
+    path("FileManager/<path:url_path>", FileManager.as_view()),
     # Blog package URL.
     path("blog/", include(("blog.urls", "blog"))),
-    path("account/", include(("account.urls", "account"))),
     # Swagger.
     path(
         "swagger/",
         schema_view.with_ui("swagger", cache_timeout=0),
         name="schema-swagger-ui",
     ),
+    # path("", include(router.urls)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
