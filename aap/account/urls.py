@@ -22,7 +22,7 @@ router.register("content_types", ContentTypeViewSet, basename="content_type")
 
 urlpatterns = [
     path("", include(router.urls)),
-    path("me/", MyProfileView.as_view()),
+    path("me/", MyProfileView.as_view(), name="me"),
     path("login/", LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
     path("register/", RegisterView.as_view(), name="register"),
