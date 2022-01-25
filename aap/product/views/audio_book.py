@@ -4,10 +4,9 @@ from product.models import (
     AudioBook,
     AudioIndex,
     AudioType,
-    BookAuthor,
-    BookSpeaker,
+    Author,
+    Speaker,
     CompatibleDevice,
-    Product,
     Publisher,
 )
 from product.serializers import (
@@ -46,7 +45,7 @@ class BookSpeakerViewSet(
     """Book speaker view set."""
 
     permission_classes = [permissions.DjangoModelPermissions]
-    queryset = BookSpeaker.objects.all()
+    queryset = Speaker.objects.all()
     serializer_class = BookSpeakerSerializer
     alternative_lookup_field = "name"
     filterset_fields = ("name",)
@@ -61,7 +60,7 @@ class BookAuthorViewSet(
     """Book author view set."""
 
     permission_classes = [permissions.DjangoModelPermissions]
-    queryset = BookAuthor.objects.all()
+    queryset = Author.objects.all()
     serializer_class = BookAuthorSerializer
     alternative_lookup_field = "name"
     filterset_fields = ("name",)
@@ -120,7 +119,7 @@ class AudioBookViewSet(
     """Audio book view set."""
 
     permission_classes = [permissions.DjangoModelPermissions]
-    queryset = Product.objects.all()
+    queryset = AudioBook.objects.all()
     serializer_class = AudioBookSerializer
     alternative_lookup_field = "name"
     filterset_fields = ("name",)
