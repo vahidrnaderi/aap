@@ -5,7 +5,8 @@ import uuid
 from django.conf import settings
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
-from account.models import User
+# from account.models import User
+
 
 class BaseManager(models.Manager):
     """Base model manager."""
