@@ -12,10 +12,12 @@ from .views import (
     ChangePasswordView,
     MyProfileView,
     RegisterView,
+    AddressViewSet,
 )
 
 router = routers.DefaultRouter()
 router.register("users", UserViewSet, basename="user")
+router.register("address", AddressViewSet, basename="address")
 router.register("groups", GroupViewSet, basename="group")
 router.register("permissions", PermissionViewSet, basename="permission")
 router.register("content_types", ContentTypeViewSet, basename="content_type")

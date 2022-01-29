@@ -5,7 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 from rest_framework import serializers, exceptions, status
 
-from .models import User
+from .models import User, Address
 
 
 class ContentTypeSerializer(serializers.ModelSerializer):
@@ -193,3 +193,26 @@ class ChangePasswordSerializer(serializers.Serializer):
     username = serializers.CharField(required=False)
     old_password = serializers.CharField()
     new_password = serializers.CharField()
+
+
+class AddressSerializer(serializers.ModelSerializer):
+    """Address serializer."""
+
+    url = serializers.HyperlinkedIdentityField(view_name="account:address-detail")
+
+    class Meta:
+        model = Address
+        fields = (
+            "url",
+            "id",
+            "user",
+            "country",
+            "city",
+            "state",
+            "post_code",
+            "address",
+            "street",
+            "house_number",
+            "floor",
+            "unit",
+        )

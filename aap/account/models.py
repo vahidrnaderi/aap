@@ -42,3 +42,21 @@ def add_user_in_default_group(instance, created, **_):
         default_group = Group.objects.get_or_create(name=settings.DEFAULT_USER_GROUP)
         instance.groups.add(default_group[0].id)
         instance.save()
+
+
+class Address(models.Model):
+    """Address model"""
+
+    user = models.ForeignKey(User, related_name="address_user", on_delete=models.CASCADE)
+    country = models.CharField(max_length=100, null=False)
+    city = models.CharField(max_length=150, null=False)
+    state = models.CharField(max_length=150, null=False)
+    post_code = models.CharField(max_length=10, null=False)
+    address = models.CharField(max_length=255, null=False)
+    street = models.CharField(max_length=255)
+    house_number = models.CharField(max_length=5, null=False)
+    floor = models.CharField(max_length=3, null=False)
+    unit = models.CharField(max_length=3, null=False)
+
+    def __str__(self):
+        return self.get_full_name()

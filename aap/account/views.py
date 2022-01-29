@@ -9,7 +9,7 @@ from rest_framework import generics, permissions, status, views, viewsets
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 
-from .models import User
+from .models import User, Address
 from .serializers import (
     ChangePasswordSerializer,
     ContentTypeSerializer,
@@ -18,6 +18,7 @@ from .serializers import (
     PermissionSerializer,
     RegisterSerializer,
     UserSerializer,
+    AddressSerializer,
 )
 
 
@@ -65,6 +66,15 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     filterset_fields = ("name",)
+
+
+class AddressViewSet(viewsets.ModelViewSet):
+    """Address view set."""
+
+    permission_classes = [permissions.IsAuthenticated, AAPDjangoModelPermissions]
+    queryset = Address.objects.all()
+    serializer_class = AddressSerializer
+    filterset_fields = ("country", "city", "state", "post_code", "address",)
 
 
 class PermissionViewSet(viewsets.ReadOnlyModelViewSet):
