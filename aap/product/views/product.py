@@ -1,11 +1,23 @@
 """Product views."""
-from product.serializers import CategorySerializer, TagSerializer, AudioBookBookmarkSerializer,\
-    PaperBookBookmarkSerializer
+from product.serializers import AudioBookBookmarkSerializer, PaperBookBookmarkSerializer
 from base.models import Tag, Category
+from base.serializers import CategorySerializer, TagSerializer
 from product.models import PaperBook, AudioBook
 from base.views import BaseViewSet
 from rest_framework import permissions, generics, status
 from rest_framework.response import Response
+
+from product.models import (
+    AudioBook,
+    Author,
+    Translator,
+    Publisher,
+)
+from product.serializers import (
+    BookAuthorSerializer,
+    TranslatorSerializer,
+    PublisherSerializer,
+)
 
 
 class TagViewSet(
@@ -31,6 +43,51 @@ class CategoryViewSet(
     queryset = Category.objects.filter(is_deleted=False)
     serializer_class = CategorySerializer
     alternative_lookup_field = "name"
+
+
+class BookAuthorViewSet(
+    BaseViewSet,
+    generics.ListCreateAPIView,
+    generics.RetrieveAPIView,
+    generics.CreateAPIView,
+):
+    """Book author view set."""
+
+    permission_classes = [permissions.DjangoModelPermissions]
+    queryset = Author.objects.all()
+    serializer_class = BookAuthorSerializer
+    alternative_lookup_field = "name"
+    filterset_fields = ("name",)
+
+
+class PublisherViewSet(
+    BaseViewSet,
+    generics.ListCreateAPIView,
+    generics.RetrieveAPIView,
+    generics.CreateAPIView,
+):
+    """Publisher view set."""
+
+    permission_classes = [permissions.DjangoModelPermissions]
+    queryset = Publisher.objects.all()
+    serializer_class = PublisherSerializer
+    alternative_lookup_field = "name"
+    filterset_fields = ("name",)
+
+
+class TranslatorViewSet(
+    BaseViewSet,
+    generics.ListCreateAPIView,
+    generics.RetrieveAPIView,
+    generics.CreateAPIView,
+):
+    """Publisher view set."""
+
+    permission_classes = [permissions.DjangoModelPermissions]
+    queryset = Translator.objects.all()
+    serializer_class = TranslatorSerializer
+    alternative_lookup_field = "name"
+    filterset_fields = ("name",)
 
 
 class AudioBookBookmarkViewSet(BaseViewSet, generics.ListCreateAPIView, generics.DestroyAPIView):

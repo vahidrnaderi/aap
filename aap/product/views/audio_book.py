@@ -4,19 +4,19 @@ from product.models import (
     AudioBook,
     AudioIndex,
     AudioType,
-    Author,
+    # Author,
     Speaker,
     CompatibleDevice,
-    Publisher,
+    # Publisher,
 )
 from product.serializers import (
     AudioBookSerializer,
     AudioIndexSerializer,
     AudioTypeSerializer,
-    BookAuthorSerializer,
+    # BookAuthorSerializer,
     BookSpeakerSerializer,
     CompatibleDeviceSerializer,
-    PublisherSerializer,
+    # PublisherSerializer,
 )
 from rest_framework import generics, permissions
 
@@ -47,36 +47,6 @@ class BookSpeakerViewSet(
     permission_classes = [permissions.DjangoModelPermissions]
     queryset = Speaker.objects.all()
     serializer_class = BookSpeakerSerializer
-    alternative_lookup_field = "name"
-    filterset_fields = ("name",)
-
-
-class BookAuthorViewSet(
-    BaseViewSet,
-    generics.ListCreateAPIView,
-    generics.RetrieveAPIView,
-    generics.CreateAPIView,
-):
-    """Book author view set."""
-
-    permission_classes = [permissions.DjangoModelPermissions]
-    queryset = Author.objects.all()
-    serializer_class = BookAuthorSerializer
-    alternative_lookup_field = "name"
-    filterset_fields = ("name",)
-
-
-class PublisherViewSet(
-    BaseViewSet,
-    generics.ListCreateAPIView,
-    generics.RetrieveAPIView,
-    generics.CreateAPIView,
-):
-    """Publisher view set."""
-
-    permission_classes = [permissions.DjangoModelPermissions]
-    queryset = Publisher.objects.all()
-    serializer_class = PublisherSerializer
     alternative_lookup_field = "name"
     filterset_fields = ("name",)
 

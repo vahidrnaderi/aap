@@ -4,7 +4,8 @@ from django.db import models
 from base.models import Base
 # from polymorphic.models import PolymorphicModel
 from django.conf import settings
-from base.models import BaseComment, BaseStar, Category
+# from base.models import BaseComment, BaseStar, Category
+from base.models import Category
 from polymorphic.models import PolymorphicModel
 
 

@@ -16,6 +16,7 @@ from .views import (
     PublisherViewSet,
     TagViewSet,
     PaperBookViewSet,
+    TranslatorViewSet
 )
 
 router = routers.DefaultRouter()
@@ -24,12 +25,13 @@ router.register("categories", CategoryViewSet, basename="category")
 router.register("audio_book_bookmarks", AudioBookBookmarkViewSet, basename="audio_book_bookmark")
 router.register("paper_book_bookmarks", PaperBookBookmarkViewSet, basename="paper_book_bookmark")
 router.register("audio_types", AudioTypeViewSet, basename="audio_type")
-router.register("book_speakers", BookSpeakerViewSet, basename="book_speaker")
+router.register("audio_speakers", BookSpeakerViewSet, basename="audio_speaker")
 router.register("publishers", PublisherViewSet, basename="publisher")
 router.register("audio_books", AudioBookViewSet, basename="audio_book")
 router.register("paper_books", PaperBookViewSet, basename="paper_book")
 router.register("audio_indices", AudioIndexViewSet, basename="audio_index")
 router.register("book_authors", BookAuthorViewSet, basename="book_author")
+router.register("book_translators", TranslatorViewSet, basename="book_translator")
 router.register(
     "compatible_devices", CompatibleDeviceViewSet, basename="compatible_device"
 )
@@ -60,10 +62,10 @@ book_author_router = nested_routers.NestedDefaultRouter(
 )
 book_author_router.register("audio_books", AudioBookViewSet, basename="audio_books")
 
-book_speaker_router = nested_routers.NestedDefaultRouter(
-    router, "book_speakers", lookup="book_speakers"
+audio_speaker_router = nested_routers.NestedDefaultRouter(
+    router, "audio_speakers", lookup="audio_speakers"
 )
-book_speaker_router.register("audio_books", AudioBookViewSet, basename="audio_books")
+audio_speaker_router.register("audio_books", AudioBookViewSet, basename="audio_books")
 
 urlpatterns = [
     path("", include(router.urls)),
@@ -72,5 +74,5 @@ urlpatterns = [
     path("", include(compatible_device_router.urls)),
     path("", include(publisher_router.urls)),
     path("", include(book_author_router.urls)),
-    path("", include(book_speaker_router.urls)),
+    path("", include(audio_speaker_router.urls)),
 ]

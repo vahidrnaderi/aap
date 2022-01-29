@@ -3,7 +3,7 @@ from base.models import Base
 from django.db import models
 from django.conf import settings
 from account.models import User
-from base.models import BaseComment, BaseStar
+from base.models import BaseComment, BaseStar, Tag
 
 from .product import (
     Translator,
@@ -110,6 +110,7 @@ class AudioBook(Product):
     audio_type = models.ForeignKey(AudioType, on_delete=models.DO_NOTHING)
     compatible_devices = models.ManyToManyField(CompatibleDevice)
     is_downloadable = models.BooleanField(default=False)
+    tags = models.ManyToManyField(Tag)
 
 
 class AudioBookComment(BaseComment):

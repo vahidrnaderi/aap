@@ -1,6 +1,6 @@
 """Product serializers."""
 from rest_framework import serializers
-from base.models import Tag, Category
+# from base.models import Tag, Category
 from product.models import (
     AudioType,
     # AudioBook,
@@ -9,27 +9,13 @@ from product.models import (
     AudioIndex,
     Speaker,
     CompatibleDevice,
+    Translator,
     # Tag,
     # Category,
     # Product,
     AudioBook,
     PaperBook,
 )
-
-
-class TagSerializer(serializers.ModelSerializer):
-    """Tag serializer."""
-
-    url = serializers.HyperlinkedIdentityField(view_name="product:tag-detail")
-
-    class Meta:
-        model = Tag
-        fields = (
-            "url",
-            "id",
-            "name",
-        )
-        ref_name = "product"
 
 
 class PublisherSerializer(serializers.ModelSerializer):
@@ -39,6 +25,20 @@ class PublisherSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Publisher
+        fields = (
+            "url",
+            "id",
+            "name",
+        )
+
+
+class TranslatorSerializer(serializers.ModelSerializer):
+    """Publisher serializer."""
+
+    url = serializers.HyperlinkedIdentityField(view_name="product:book_translator-detail")
+
+    class Meta:
+        model = Translator
         fields = (
             "url",
             "id",
@@ -141,22 +141,6 @@ class PaperBookBookmarkSerializer(serializers.ModelSerializer):
     class Meta:
         model = PaperBook
         fields = ("product",)
-        ref_name = "product"
-
-
-class CategorySerializer(serializers.ModelSerializer):
-    """Category serializer."""
-
-    url = serializers.HyperlinkedIdentityField(view_name="product:category-detail")
-
-    class Meta:
-        model = Category
-        fields = (
-            "url",
-            "id",
-            "name",
-            "parent",
-        )
         ref_name = "product"
 
 

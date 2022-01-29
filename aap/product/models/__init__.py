@@ -3,14 +3,17 @@ from .audio_book import (
     AudioBook,
     AudioIndex,
     AudioType,
-    Author,
-    Speaker,
     CompatibleDevice,
-    Publisher,
 )
 from .paper_book import PaperBook
 # from .product import Category, Product, Tag
-from .product import Product
+from .product import (
+    Product,
+    Author,
+    Speaker,
+    Translator,
+    Publisher,
+)
 
 __all__ = (
     # "Tag",
@@ -24,4 +27,5 @@ __all__ = (
     "AudioIndex",
     "Speaker",
     "CompatibleDevice",
+    "Translator",
 )

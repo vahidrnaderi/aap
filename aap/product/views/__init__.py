@@ -3,10 +3,13 @@ from .audio_book import (
     AudioBookViewSet,
     AudioIndexViewSet,
     AudioTypeViewSet,
-    BookAuthorViewSet,
     BookSpeakerViewSet,
     CompatibleDeviceViewSet,
+)
+from .product import (
+    BookAuthorViewSet,
     PublisherViewSet,
+    TranslatorViewSet,
 )
 from .Paper_book import PaperBookViewSet
 from .product import AudioBookBookmarkViewSet, PaperBookBookmarkViewSet, CategoryViewSet, TagViewSet
@@ -24,4 +27,5 @@ __all__ = (
     "BookAuthorViewSet",
     "BookSpeakerViewSet",
     "CompatibleDeviceViewSet",
+    "TranslatorViewSet",
 )
