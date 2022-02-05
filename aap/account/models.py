@@ -27,6 +27,7 @@ class User(AbstractUser):
     )
     mobile = models.CharField(max_length=settings.MOBILE_LENGTH)
     image = models.URLField()
+    # address = models.ForeignKey(Address, related_name="address_user", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.get_full_name()
@@ -47,16 +48,15 @@ def add_user_in_default_group(instance, created, **_):
 class Address(models.Model):
     """Address model"""
 
+    name = models.CharField(max_length=100, null=False, default="home")
     user = models.ForeignKey(User, related_name="address_user", on_delete=models.CASCADE)
     country = models.CharField(max_length=100, null=False)
     city = models.CharField(max_length=150, null=False)
     state = models.CharField(max_length=150, null=False)
     post_code = models.CharField(max_length=10, null=False)
     address = models.CharField(max_length=255, null=False)
-    street = models.CharField(max_length=255)
+    street = models.CharField(max_length=255, null=True)
     house_number = models.CharField(max_length=5, null=False)
     floor = models.CharField(max_length=3, null=False)
     unit = models.CharField(max_length=3, null=False)
 
-    def __str__(self):
-        return self.get_full_name()

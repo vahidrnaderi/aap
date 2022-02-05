@@ -1,19 +1,19 @@
 """Product views."""
-from product.serializers import AudioBookBookmarkSerializer, PaperBookBookmarkSerializer
+from shop.product.serializers import AudioBookBookmarkSerializer, PaperBookBookmarkSerializer
 from base.models import Tag, Category
 from base.serializers import CategorySerializer, TagSerializer
-from product.models import PaperBook, AudioBook
+from shop.product.models import PaperBook, AudioBook
 from base.views import BaseViewSet
 from rest_framework import permissions, generics, status
 from rest_framework.response import Response
 
-from product.models import (
+from shop.product.models import (
     AudioBook,
     Author,
     Translator,
     Publisher,
 )
-from product.serializers import (
+from shop.product.serializers import (
     BookAuthorSerializer,
     TranslatorSerializer,
     PublisherSerializer,

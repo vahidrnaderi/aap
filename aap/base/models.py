@@ -22,9 +22,9 @@ class BaseManager(models.Manager):
 class AbstractBase(models.Model):
     """Abstract base model implementation."""
 
-    id = models.UUIDField(  # noqa: A003
-        primary_key=True, default=uuid.uuid4, editable=False
-    )
+    # id = models.UUIDField(  # noqa: A003
+    #     primary_key=True, default=uuid.uuid4, editable=False
+    # )
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
@@ -77,9 +77,13 @@ class Category(Base):
         "self",
         null=True,
         related_name="category_parent",
-        blank=True,
+        # blank=True,
         on_delete=models.DO_NOTHING,
     )
+    # parent = models.BigIntegerField(null=True)
+
+    class Meta:
+        unique_together = ("name", "parent")
 
     def __str__(self):
         if self.is_deleted:

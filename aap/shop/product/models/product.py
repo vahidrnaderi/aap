@@ -1,4 +1,5 @@
 """Product models."""
+from datetime import datetime
 from django.db import models
 # from account.models import User
 from base.models import Base
@@ -92,13 +93,19 @@ class Product(PolymorphicModel, Base):
         on_delete=models.SET(get_deleted_category),
     )
     bookmarks = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, related_name="product_bookmarks"
+        settings.AUTH_USER_MODEL, related_name="product_bookmarks", null=True
     )
     product_code = models.CharField(
         max_length=255,
         unique=True,
     )
     image = models.URLField()
+    inventory = models.PositiveIntegerField()
+    buy_price = models.PositiveIntegerField()
+    sel_price = models.PositiveIntegerField()
+    discount = models.PositiveSmallIntegerField(default=0)
+    start = models.DateTimeField(default=datetime.utcnow, blank=True, null=True)
+    end = models.DateTimeField(blank=True, null=True)
     extra = models.JSONField()
 
     # class Meta:

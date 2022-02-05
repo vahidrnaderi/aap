@@ -74,7 +74,11 @@ class AddressViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated, AAPDjangoModelPermissions]
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
-    filterset_fields = ("country", "city", "state", "post_code", "address",)
+    filterset_fields = ("country", "city", "state", "post_code", "address", "street", "house_number", "floor", "unit",)
+
+    # def get_queryset(self):
+    #     """Only fetch address-related users."""
+    #     return User.objects.filter(user=self.kwargs["user_pk"])
 
 
 class PermissionViewSet(viewsets.ReadOnlyModelViewSet):

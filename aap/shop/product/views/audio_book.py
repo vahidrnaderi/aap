@@ -1,6 +1,6 @@
 """Audio book views."""
 from base.views import BaseViewSet
-from product.models import (
+from shop.product.models import (
     AudioBook,
     AudioIndex,
     AudioType,
@@ -9,7 +9,7 @@ from product.models import (
     CompatibleDevice,
     # Publisher,
 )
-from product.serializers import (
+from shop.product.serializers import (
     AudioBookSerializer,
     AudioIndexSerializer,
     AudioTypeSerializer,

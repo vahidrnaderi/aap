@@ -5,15 +5,16 @@ from polymorphic.models import PolymorphicModel
 from account.models import User
 from base.models import Base
 from account.models import Address
-from product.models import Product
+from shop.product.models import Product
 
 
-class Cart(PolymorphicModel, Base):
+# class Cart(Product):
+class Cart(Base):
     """Cart model."""
 
-    user = models.ForeignKey(User, related_name="cart_user_product", on_delete=models.CASCADE)
-    delivery_address = models.ForeignKey(Address, related_name="cart_delivery_address", on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, related_name="cart_product", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name="cart_user_product", on_delete=models.DO_NOTHING)
+    delivery_address = models.ForeignKey(Address, related_name="cart_delivery_address", on_delete=models.DO_NOTHING)
+    product = models.ForeignKey(Product, related_name="cart_product", on_delete=models.DO_NOTHING)
     # product = models.PositiveIntegerField()
     # content = models.TextField()
     quantity = models.PositiveIntegerField(

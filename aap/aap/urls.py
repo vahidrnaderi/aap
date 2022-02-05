@@ -29,8 +29,12 @@ schema_view = get_schema_view(
 urlpatterns = [
     # Account.
     path("account/", include(("account.urls", "account"))),
+    # Base.
+    path("base/", include(("base.urls", "base"))),
     # Blog.
     path("blog/", include(("blog.urls", "blog"))),
+    # Cart.
+    path("shop/cart/", include(("shop.cart.urls", "cart"))),
     # Media (file/directory) manager.
     path("file/", include(("file.urls", "file"))),
     # Page.
@@ -38,9 +42,9 @@ urlpatterns = [
     # Slideshow.
     path("slideshow/", include(("slideshow.urls", "slideshow"))),
     # Product.
-    path("product/", include(("product.urls", "product"))),
-    # Price.
-    path("price/", include(("price.urls", "price"))),
+    path("shop/product/", include(("shop.product.urls", "product"))),
+    # # Price.
+    # path("shop/price/", include(("shop.price.urls", "price"))),
     # Health check.
     path("health-check/", health_check),
     # Swagger.
