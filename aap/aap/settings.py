@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     # "shop.price",
     "shop.cart",
     "shop.product",
+    "shop.payment",
 ]
 
 # Note: it will be overridden by 'page' app.

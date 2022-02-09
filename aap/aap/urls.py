@@ -35,6 +35,8 @@ urlpatterns = [
     path("blog/", include(("blog.urls", "blog"))),
     # Cart.
     path("shop/cart/", include(("shop.cart.urls", "cart"))),
+    # Payment.
+    path("shop/", include(("shop.payment.urls", "payment"))),
     # Media (file/directory) manager.
     path("file/", include(("file.urls", "file"))),
     # Page.
