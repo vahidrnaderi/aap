@@ -20,6 +20,8 @@ class CartViewSet(
     serializer_class = CartSerializer
     alternative_lookup_field = "product"
 
+    # def list(self, request, *args, **kwargs):
+    #     print
 
 # class CartViewSet(
 #     BaseViewSet,

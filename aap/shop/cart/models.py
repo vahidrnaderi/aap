@@ -1,4 +1,4 @@
-"""Product models."""
+"""Cart models."""
 from django.db import models
 from django.core.validators import MinValueValidator
 from polymorphic.models import PolymorphicModel
@@ -13,7 +13,7 @@ class Cart(Base):
     """Cart model."""
 
     user = models.ForeignKey(User, related_name="cart_user_product", on_delete=models.DO_NOTHING)
-    delivery_address = models.ForeignKey(Address, related_name="cart_delivery_address", on_delete=models.DO_NOTHING)
+    # delivery_address = models.ForeignKey(Address, related_name="cart_delivery_address", on_delete=models.DO_NOTHING)
     product = models.ForeignKey(Product, related_name="cart_product", on_delete=models.DO_NOTHING)
     # product = models.PositiveIntegerField()
     # content = models.TextField()

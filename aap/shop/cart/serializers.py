@@ -7,7 +7,7 @@ from shop.product.serializers import ProductSerializer, PaperBookSerializer, Aud
 
 
 class ProductGeneralInfoSerializer(serializers.ModelSerializer):
-    """User's public info serializer."""
+    """Product's public info serializer."""
 
     url = serializers.HyperlinkedIdentityField(view_name="product:product-detail")
 
@@ -124,7 +124,8 @@ class CartSerializer(serializers.ModelSerializer):
     # products = ProductSerializer(many=True, read_only=True, source="cart_product")
     # products = ProductGeneralInfoSerializer(many=True, read_only=True)
     # products = ProductPolymorphicSerializer(many=True, read_only=True, source="cart:cart-detail")
-    products = ProductPolymorphicSerializer(many=True, read_only=True, source="cart_product")
+    # products = ProductPolymorphicSerializer(many=True, read_only=True, source="cart_product")
+    products = ProductPolymorphicSerializer(many=True, read_only=True)
 
     class Meta:
         model = Cart
@@ -134,7 +135,7 @@ class CartSerializer(serializers.ModelSerializer):
             "id",
             "user",
             "product",
-            "delivery_address",
+            # "delivery_address",
             # "content",
             "quantity",
             "products",
