@@ -129,7 +129,6 @@ class CartSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Cart
-        # readonly = ("delivery_address",)
         fields = (
             "url",
             "id",
@@ -140,9 +139,12 @@ class CartSerializer(serializers.ModelSerializer):
             "quantity",
             "products",
             # "price",
-            # "total_price",
+            # "final_price",
+            # "invoice_number",
         )
+        # read_only_fields = ("invoice_number",)
         ref_name = "cart"
+
 
     # def get_total_price(self, obj):
     #     """Get post's star average."""

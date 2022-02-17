@@ -61,6 +61,7 @@ class Post(Base):
         on_delete=models.SET(get_deleted_post_category),
     )
     visited = models.PositiveIntegerField(default=0)
+    is_approved = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["created_at"]

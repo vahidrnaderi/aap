@@ -12,4 +12,5 @@ class SlideShowConfig(AppConfig):
     name = "slideshow"
 
     def ready(self):
+        """Slideshow ready."""
         settings.SERIALIZERS = all_serializers()

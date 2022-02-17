@@ -20,7 +20,7 @@ class PaymentSerializer(serializers.ModelSerializer):
             "total_payment",
             "bank_id",
             "batch_number",
-            "invoice_number",
+            # "invoice_number",
         )
         ref_name = "payment"
 

@@ -123,7 +123,7 @@ class AudioIndexSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    """Audio book serializer."""
+    """Product serializer."""
 
     # url = serializers.HyperlinkedIdentityField(view_name="product:paper_book-detail")
     # bookmarks_count = serializers.SerializerMethodField()
@@ -133,9 +133,9 @@ class ProductSerializer(serializers.ModelSerializer):
         # exclude = ["bookmarks"]
         fields = "__all__"
 
-    def get_bookmarks_count(self, obj):
-        """Get product's bookmarks count."""
-        return obj.bookmarks.count()
+    # def get_bookmarks_count(self, obj):
+    #     """Get product's bookmarks count."""
+    #     return obj.bookmarks.count()
 
 
 class AudioBookBookmarkSerializer(serializers.ModelSerializer):

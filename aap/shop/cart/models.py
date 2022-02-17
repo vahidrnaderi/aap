@@ -22,6 +22,11 @@ class Cart(Base):
         validators=[MinValueValidator(1)]
     )
     # price = models.PositiveIntegerField()
+    # final_price = models.PositiveIntegerField()
+    # invoice_number = models.PositiveIntegerField(null=True)
+
+    class Meta:
+        unique_together = (("user", "product"),)
 
     def __str__(self):
         if self.is_deleted:

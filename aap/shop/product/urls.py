@@ -16,10 +16,12 @@ from .views import (
     PublisherViewSet,
     TagViewSet,
     PaperBookViewSet,
-    TranslatorViewSet
+    TranslatorViewSet,
+    ProductViewSet,
 )
 
 router = routers.DefaultRouter()
+router.register("", ProductViewSet, basename="products")
 router.register("tags", TagViewSet, basename="tag")
 router.register("categories", CategoryViewSet, basename="category")
 router.register("audio_book_bookmarks", AudioBookBookmarkViewSet, basename="audio_book_bookmark")
@@ -37,13 +39,15 @@ router.register(
 )
 
 # Nested router.
-category_router = nested_routers.NestedDefaultRouter(
-    router, "categories", lookup="category"
-)
-category_router.register("audio_books", AudioBookViewSet, basename="audio_books")
+# category_router = nested_routers.NestedDefaultRouter(
+#     router, "categories", lookup="category"
+# )
+# category_router.register("audio_books", AudioBookViewSet, basename="audio_books")
+# category_router.register("paper_books", AudioBookViewSet, basename="paper_books")
 
 tag_router = nested_routers.NestedDefaultRouter(router, "tags", lookup="tags")
 tag_router.register("audio_books", AudioBookViewSet, basename="audio_books")
+tag_router.register("paper_books", AudioBookViewSet, basename="paper_books")
 
 compatible_device_router = nested_routers.NestedDefaultRouter(
     router, "compatible_devices", lookup="compatible_devices"
@@ -56,11 +60,19 @@ publisher_router = nested_routers.NestedDefaultRouter(
     router, "publishers", lookup="publishers"
 )
 publisher_router.register("audio_books", AudioBookViewSet, basename="audio_books")
+publisher_router.register("paper_books", AudioBookViewSet, basename="paper_books")
 
 book_author_router = nested_routers.NestedDefaultRouter(
     router, "book_authors", lookup="book_authors"
 )
 book_author_router.register("audio_books", AudioBookViewSet, basename="audio_books")
+book_author_router.register("paper_books", AudioBookViewSet, basename="paper_books")
+
+book_translator_router = nested_routers.NestedDefaultRouter(
+    router, "book_translators", lookup="book_translators"
+)
+book_translator_router.register("audio_books", AudioBookViewSet, basename="audio_books")
+book_translator_router.register("paper_books", AudioBookViewSet, basename="paper_books")
 
 audio_speaker_router = nested_routers.NestedDefaultRouter(
     router, "audio_speakers", lookup="audio_speakers"
@@ -69,10 +81,11 @@ audio_speaker_router.register("audio_books", AudioBookViewSet, basename="audio_b
 
 urlpatterns = [
     path("", include(router.urls)),
-    path("", include(category_router.urls)),
+    # path("", include(category_router.urls)),
     path("", include(tag_router.urls)),
     path("", include(compatible_device_router.urls)),
     path("", include(publisher_router.urls)),
     path("", include(book_author_router.urls)),
+    path("", include(book_translator_router.urls)),
     path("", include(audio_speaker_router.urls)),
 ]

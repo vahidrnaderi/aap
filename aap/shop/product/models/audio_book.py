@@ -1,7 +1,7 @@
 """Audio book product models."""
 from base.models import Base
 from django.db import models
-from django.conf import settings
+# from django.conf import settings
 from account.models import User
 from base.models import BaseComment, BaseStar, Tag
 

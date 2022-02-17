@@ -221,3 +221,10 @@ class ChangePasswordSerializer(serializers.Serializer):
     username = serializers.CharField(required=False)
     old_password = serializers.CharField()
     new_password = serializers.CharField()
+
+
+# class VerifySerializer(serializers.Serializer):
+#     """Verify serializer."""
+#
+#     username = serializers.CharField()
+#     password = serializers.CharField()

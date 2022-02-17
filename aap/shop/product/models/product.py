@@ -107,6 +107,7 @@ class Product(PolymorphicModel, Base):
     start = models.DateTimeField(default=datetime.utcnow, blank=True, null=True)
     end = models.DateTimeField(blank=True, null=True)
     extra = models.JSONField()
+    is_approved = models.BooleanField(default=False)
 
     # class Meta:
     #     abstract = True

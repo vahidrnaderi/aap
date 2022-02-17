@@ -12,12 +12,29 @@ from shop.product.models import (
     Author,
     Translator,
     Publisher,
+    Product,
 )
 from shop.product.serializers import (
     BookAuthorSerializer,
     TranslatorSerializer,
     PublisherSerializer,
+    ProductSerializer,
 )
+
+
+class ProductViewSet(
+    BaseViewSet,
+    generics.ListCreateAPIView,
+    generics.RetrieveAPIView,
+    generics.CreateAPIView,
+):
+    """Product view set."""
+
+    permission_classes = [permissions.DjangoModelPermissions]
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    alternative_lookup_field = "name"
+#     filterset_fields = ("name",)
 
 
 class TagViewSet(
@@ -91,7 +108,7 @@ class TranslatorViewSet(
 
 
 class AudioBookBookmarkViewSet(BaseViewSet, generics.ListCreateAPIView, generics.DestroyAPIView):
-    """Bookmark view set."""
+    """Audio Book Bookmark view set."""
 
     permission_classes = [permissions.IsAuthenticated]
     queryset = AudioBook.objects.all().only("id", "bookmarks")
@@ -162,7 +179,7 @@ class AudioBookBookmarkViewSet(BaseViewSet, generics.ListCreateAPIView, generics
 
 
 class PaperBookBookmarkViewSet(BaseViewSet, generics.ListCreateAPIView, generics.DestroyAPIView):
-    """Bookmark view set."""
+    """Paper Book Bookmark view set."""
 
     permission_classes = [permissions.IsAuthenticated]
     queryset = PaperBook.objects.all().only("id", "bookmarks")

@@ -36,11 +36,12 @@ class Payment(Base):
     # order = models.On(Order, related_name="order_payment", on_delete=models.DO_NOTHING)
     payment_type = models.CharField(max_length=30)
     # content = models.TextField()
-    status = models.CharField(max_length=15)
+    status = models.CharField(max_length=15, null=True) #, choices=(("success", "success"), ("fail", "fail"), ("cancel", "cancel")))
+    bank_response = models.JSONField(null=True)
     total_payment = models.PositiveIntegerField()
-    bank_id = models.PositiveIntegerField()
-    batch_number = models.CharField(max_length=45)
-    invoice_number = models.PositiveIntegerField(null=True)
+    bank_id = models.PositiveIntegerField(null=True)
+    batch_number = models.CharField(max_length=45, null=True)
+    # invoice_number = models.PositiveIntegerField(null=True)
 
     # def __str__(self):
     #     if self.is_deleted:

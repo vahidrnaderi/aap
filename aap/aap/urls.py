@@ -34,7 +34,7 @@ urlpatterns = [
     # Blog.
     path("blog/", include(("blog.urls", "blog"))),
     # Cart.
-    path("shop/cart/", include(("shop.cart.urls", "cart"))),
+    path("shop/", include(("shop.cart.urls", "cart"))),
     # Payment.
     path("shop/", include(("shop.payment.urls", "payment"))),
     # Media (file/directory) manager.
@@ -43,8 +43,10 @@ urlpatterns = [
     path("page/", include(("page.urls", "page"))),
     # Slideshow.
     path("slideshow/", include(("slideshow.urls", "slideshow"))),
-    # Product.
-    path("shop/product/", include(("shop.product.urls", "product"))),
+    # # Product.
+    # path("shop/product/", include(("shop.product.urls", "product"))),
+    # Products.
+    path("shop/products/", include(("shop.product.urls", "products"))),
     # # Price.
     # path("shop/price/", include(("shop.price.urls", "price"))),
     # Health check.

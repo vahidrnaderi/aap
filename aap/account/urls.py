@@ -13,6 +13,7 @@ from .views import (
     MyProfileView,
     RegisterView,
     AddressViewSet,
+    Verify,
 )
 
 router = routers.DefaultRouter()
@@ -29,4 +30,5 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(), name="logout"),
     path("register/", RegisterView.as_view(), name="register"),
     path("password/", ChangePasswordView.as_view(), name="change_password"),
+    path("verify/", Verify.as_view(), name="verify"),
 ]

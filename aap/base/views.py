@@ -45,6 +45,18 @@ class BaseViewSet(viewsets.GenericViewSet):
             self.permission_classes = [permissions.AllowAny]
         return super().get_permissions()
 
+    def get_queryset(self):
+        """
+        This view should return a list of all the cart
+        for the currently authenticated user.
+        """
+        user = self.request.user
+
+        if user.is_superuser:
+            return self.queryset.all()
+        else:
+            return self.queryset.filter(user=user)
+
 
 class TagViewSet(
     BaseViewSet,

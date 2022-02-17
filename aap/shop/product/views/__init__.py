@@ -12,7 +12,13 @@ from .product import (
     TranslatorViewSet,
 )
 from .Paper_book import PaperBookViewSet
-from .product import AudioBookBookmarkViewSet, PaperBookBookmarkViewSet, CategoryViewSet, TagViewSet
+from .product import (
+    AudioBookBookmarkViewSet,
+    PaperBookBookmarkViewSet,
+    CategoryViewSet,
+    TagViewSet,
+    ProductViewSet,
+)
 
 __all__ = (
     "AudioTypeViewSet",
@@ -28,4 +34,5 @@ __all__ = (
     "BookSpeakerViewSet",
     "CompatibleDeviceViewSet",
     "TranslatorViewSet",
+    "ProductViewSet"
 )
